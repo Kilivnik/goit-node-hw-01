@@ -48,7 +48,11 @@ async function addContact(name, email, phone) {
     const newContact = { id: uuidv4(), name, phone, email };
     const contacts = await listContacts();
     const updatedContacts = [...contacts, newContact];
-    await fs.writeFile(contactsPath, JSON.stringify(updatedContacts), "utf8");
+    await fs.writeFile(
+      contactsPath,
+      JSON.stringify(updatedContacts, null, 2),
+      "utf8"
+    );
     return newContact;
   } catch (error) {
     console.log(error);
